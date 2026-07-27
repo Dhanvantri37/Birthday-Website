@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background: #050814;
+  color: #F8FAFC;
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: #E5C158;
+  color: #070B19;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(229, 193, 88, 0.35);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: #050814;
+}
+
+.font-display {
+  font-family: "Cormorant Garamond", serif;
+}
+
+.font-handwriting {
+  font-family: "Caveat", cursive;
+}
+
+.glass {
+  background: rgba(14, 22, 45, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(229, 193, 88, 0.18);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-gold {
+  background: rgba(229, 193, 88, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 193, 88, 0.35);
+  box-shadow: 0 0 25px rgba(229, 193, 88, 0.15);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #FFF1B5 0%, #E5C158 50%, #B8860B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-silver {
+  background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 50%, #94A3B8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  45% { opacity: 0.75; transform: scaleY(0.92) translateX(-1px); }
+  55% { opacity: 0.9; transform: scaleY(1.05) translateX(1px); }
+}
+.animate-flicker {
+  animation: flicker 1.4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+.animate-float {
+  animation: floatSlow 4s ease-in-out infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
