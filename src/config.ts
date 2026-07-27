@@ -271,9 +271,6 @@ Your Junior ❤️`,
     subheading: "Thank you for guiding, inspiring, and believing in us.",
     quote: "The best chapters are yet to come.",
   },
-
-  // Audio track
-  musicSrc: "/audio/bgm.mp3",
 };
 
 export const scenes = [
