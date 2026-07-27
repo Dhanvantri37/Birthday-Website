@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 interface Props {
   index: number;
   total: number;

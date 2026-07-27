@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 interface Props {
-  mode?: "night" | "gold-glow" | "cosmic";
+  mode?: "night" | "day" | "gold-glow" | "cosmic";
   intensity?: number;
 }
 

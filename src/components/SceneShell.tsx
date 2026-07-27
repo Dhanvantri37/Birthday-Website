@@ -4,7 +4,7 @@ import AmbientBackground from "./AmbientBackground";
 
 interface Props {
   children: ReactNode;
-  mode?: "day" | "night";
+  mode?: "night" | "day" | "gold-glow" | "cosmic";
   intensity?: number;
   onContinue?: () => void;
   continueLabel?: string;
