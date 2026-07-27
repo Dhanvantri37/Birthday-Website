@@ -10,6 +10,7 @@ interface Props {
   continueLabel?: string;
   showContinue?: boolean;
   className?: string;
+  maxWidth?: string;
 }
 
 export default function SceneShell({
@@ -20,10 +21,11 @@ export default function SceneShell({
   continueLabel = "Continue the Journey",
   showContinue = true,
   className = "",
+  maxWidth = "max-w-2xl",
 }: Props) {
   return (
     <section
-      className={`relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-midnight via-midnight-light to-midnight-deep px-5 py-16 ${className}`}
+      className={`relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-midnight via-midnight-light to-midnight-deep px-4 sm:px-8 py-16 ${className}`}
     >
       <AmbientBackground mode={mode} intensity={intensity} />
       <motion.div
@@ -31,7 +33,7 @@ export default function SceneShell({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
-        className="relative z-10 flex w-full max-w-2xl flex-col items-center text-center"
+        className={`relative z-10 flex w-full ${maxWidth} flex-col items-center text-center`}
       >
         {children}
       </motion.div>
@@ -43,7 +45,7 @@ export default function SceneShell({
           viewport={{ once: true }}
           transition={{ delay: 0.6, duration: 0.8 }}
           onClick={onContinue}
-          className="group relative z-10 mt-14 flex flex-col items-center gap-2 text-gold/90"
+          className="group relative z-10 mt-14 flex flex-col items-center gap-2 text-gold/90 cursor-pointer"
         >
           <span className="font-display text-lg italic tracking-wide">{continueLabel}</span>
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="animate-bounce">

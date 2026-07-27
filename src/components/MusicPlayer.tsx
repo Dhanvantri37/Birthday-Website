@@ -7,7 +7,6 @@ export default function MusicPlayer({ started }: { started: boolean }) {
   const [volume, setVolume] = useState(0.5);
   const [showVolume, setShowVolume] = useState(false);
   const [usingSynth, setUsingSynth] = useState(false);
-  const [customAudioUrl, setCustomAudioUrl] = useState<string | null>(null);
 
   const audioCtxRef = useRef<AudioContext | null>(null);
   const synthTimerRef = useRef<number | null>(null);
@@ -26,7 +25,7 @@ export default function MusicPlayer({ started }: { started: boolean }) {
 
       setUsingSynth(true);
 
-      // Relaxing soft piano chord progression (Cmaj7, Am9, Fmaj7, G6)
+      // Relaxing soft piano chord progression (Cmaj7, Am7, Fmaj7, G6)
       const chords = [
         [261.63, 329.63, 392.0, 493.88], // Cmaj7
         [220.0, 261.63, 329.63, 392.0],  // Am7
@@ -88,12 +87,7 @@ export default function MusicPlayer({ started }: { started: boolean }) {
       stopPianoSynth();
     } else {
       setPlaying(true);
-      if (audioRef.current && !customAudioUrl) {
-        audioRef.current.play().catch(() => {
-          // If mp3 fails, fallback to procedural ambient piano synth
-          startPianoSynth();
-        });
-      } else if (audioRef.current && customAudioUrl) {
+      if (audioRef.current) {
         audioRef.current.play().catch(() => startPianoSynth());
       } else {
         startPianoSynth();
@@ -126,27 +120,11 @@ export default function MusicPlayer({ started }: { started: boolean }) {
     };
   }, []);
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setCustomAudioUrl(url);
-      stopPianoSynth();
-      setPlaying(true);
-      setTimeout(() => {
-        if (audioRef.current) {
-          audioRef.current.src = url;
-          audioRef.current.play();
-        }
-      }, 100);
-    }
-  };
-
   return (
     <div className="fixed left-4 top-4 z-50 flex items-center gap-3 md:left-6 md:top-6">
       <audio
         ref={audioRef}
-        src={customAudioUrl || config.musicSrc}
+        src={(config as any).musicSrc || "/audio/bgm.mp3"}
         loop
         onError={() => {
           if (playing) startPianoSynth();
@@ -157,7 +135,7 @@ export default function MusicPlayer({ started }: { started: boolean }) {
         onClick={togglePlay}
         className="glass-gold flex h-12 w-12 items-center justify-center rounded-full text-gold shadow-glow-gold transition hover:scale-105"
         aria-label={playing ? "Pause music" : "Play music"}
-        title={usingSynth ? "Playing Ambient Soft Piano" : "Playing Background Track"}
+        title={usingSynth ? "Playing Ambient Soft Piano" : "Playing Background Music"}
       >
         {playing ? (
           <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
@@ -178,14 +156,10 @@ export default function MusicPlayer({ started }: { started: boolean }) {
         <button
           onClick={() => setShowVolume((v) => !v)}
           className="text-xs text-ivory/80 hover:text-gold transition px-2 py-1"
+          title="Adjust Volume"
         >
           🔊
         </button>
-
-        <label className="cursor-pointer text-xs text-gold/80 hover:text-gold transition px-2 py-1" title="Upload custom song">
-          📂
-          <input type="file" accept="audio/*" className="hidden" onChange={handleFileUpload} />
-        </label>
       </div>
 
       {showVolume && (
