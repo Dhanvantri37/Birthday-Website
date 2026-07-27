@@ -10,6 +10,7 @@ export const config = {
   age: 21,
   themeTitle: "Chapter 21 – The Journey Continues",
   subtitle: "An emotional journey celebrating 21 extraordinary years.",
+  musicSrc: "/audio/bgm.mp3",
 
   openingSequence: [
     "Every year tells a story...",

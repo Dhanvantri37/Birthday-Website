@@ -25,7 +25,7 @@ export default function SceneShell({
 }: Props) {
   return (
     <section
-      className={`relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-midnight via-midnight-light to-midnight-deep px-4 sm:px-8 py-16 ${className}`}
+      className={`relative flex min-h-[100dvh] w-full flex-col items-center justify-center overflow-x-hidden bg-gradient-to-b from-midnight via-midnight-light to-midnight-deep px-3 sm:px-8 py-12 sm:py-16 ${className}`}
     >
       <AmbientBackground mode={mode} intensity={intensity} />
       <motion.div
