@@ -272,8 +272,8 @@ Your Junior ❤️`,
     quote: "The best chapters are yet to come.",
   },
 
-  // Audio track (Soft piano generator built-in + optional mp3 track)
-  musicSrc: "/audio/piano.mp3",
+  // Audio track
+  musicSrc: "/audio/bgm.mp3",
 };
 
 export const scenes = [
